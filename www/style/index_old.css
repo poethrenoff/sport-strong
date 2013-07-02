@@ -1,0 +1,988 @@
+body {
+	padding: 0px;
+	margin: 0px;
+	color: #2B256F;
+	background-color: #ffffff;
+}
+
+p, h1, h2, h3, a, li, div, td, input, select, label, textarea {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+	margin: 0px;
+	padding: 0px;
+}
+
+p.c {
+	text-align: center;
+}
+
+p.r {
+	text-align: right;
+}
+
+p.p {
+	text-indent: 40px;
+	text-align: justify;
+}
+
+a {
+	color: #831200;
+}
+
+a img {
+	border: none;
+}
+
+img.product {
+	border: 1px solid #2B256F;
+}
+
+h1, h2, h3 {
+	color: #ffffff;
+	font-weight: normal;
+	
+	padding-left: 10px;
+	padding-right: 10px;
+	
+	display: inline;
+	
+	margin-left: 40px;
+}
+
+h1 {
+	font-size: 18px;
+	background-color: #595A9B;
+}
+
+h2 {
+	font-size: 16px;
+	background-color: #262767;
+}
+
+h3 {
+	font-size: 14px;
+	background-color: #262767;
+}
+
+input.text {
+	border: 1px solid #2B256F;
+}
+
+input.button {
+	color: #000000;
+	border: 1px solid #2B256F;
+	background-color: #ddddff;
+	width: 120px;
+}
+
+textarea {
+	border: 1px solid #2B256F;
+}
+
+form {
+	margin: 0px;
+	padding: 0px;
+}
+
+div.error {
+	font-weight: bold;
+	color: #ff0000;
+	padding: 10px;
+	text-align: center;
+}
+
+div.pages {
+	margin-top: 10px;
+	text-align: right;
+}
+
+	div.pages * {
+		padding-left: 3px;
+		padding-right: 3px;
+	}
+
+div.main {
+	width: 998px;
+	margin: auto;
+}
+
+div.outer {
+	background-image: url( '/image/design/footer_bg.jpg' );
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+
+div.inner {
+	background-image: url( '/image/design/header_bg.jpg' );
+	background-position: top;
+	background-repeat: no-repeat;
+}
+
+table.structure {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	table.structure td {
+		padding: 0px;
+		text-align: left;
+		vertical-align: top;
+	}
+
+	table.structure td.header {
+		height: 207px;
+	}
+
+		table.structure td.header div.logo {
+			position: absolute;
+			
+			width: 290px;
+			height: 50px;
+			
+			margin-left: 10px;
+			margin-top: 110px;
+		}
+
+			table.structure td.header div.logo img {
+				width: 100%;
+				height: 100%;
+			}
+
+		table.structure td.header div.menu {
+			position: absolute;
+			
+			margin-top: 5px;
+		}
+
+			table.structure td.header div.menu a {
+				color: #ffffff;
+				
+				padding: 0px 15px 0px 15px;
+			}
+
+		table.structure td.header div.cart {
+			position: absolute;
+			
+			margin-left: 810px;
+			margin-top: 38px;
+			
+			width: 170px;
+			height: 65px;
+			
+			cursor: pointer;
+		}
+
+			table.structure td.header div.cart div.title {
+				position: absolute;
+				
+				margin-top: 5px;
+				
+				width: 100%;
+				text-align: center;
+				
+				color: #ffffff;
+				font-size: 14px;
+				font-weight: bold;
+			}
+			
+			table.structure td.header div.cart div.product_count {
+				position: absolute;
+				
+				margin-left: 20px;
+				margin-top: 23px;
+				
+				color: #ffffff;
+			}
+			
+			table.structure td.header div.cart div.order_sum {
+				position: absolute;
+				
+				margin-left: 20px;
+				margin-top: 40px;
+				
+				color: #ffffff;
+			}
+			
+			table.structure td.header div.cart div.cart_empty {
+				position: absolute;
+				
+				width: 100%;
+				margin-top: 30px;
+				
+				text-align: center;
+				
+				color: #ffffff;
+			}
+		
+		table.structure td.header div.contact {
+			position: absolute;
+			
+			margin-left: 615px;
+			margin-top: 208px;
+			
+			width: 370px;
+			height: 65px;
+		}
+
+			table.structure td.header div.contact div.title {
+				position: absolute;
+				
+				width: 100%;
+				text-align: right;
+				
+				color: #ffffff;
+				font-size: 14px;
+				font-weight: bold;
+			}
+
+			table.structure td.header div.contact div.phone,
+			table.structure td.header div.contact div.icq {
+				position: absolute;
+				
+				margin-top: 18px;
+				
+				width: 100%;
+				text-align: right;
+				
+				color: #ffffff;
+				font-size: 25px;
+			}
+
+				table.structure td.header div.contact div.phone span.code {
+					font-size: 12px;
+					font-weight: bold;
+				}
+
+			table.structure td.header div.contact div.icq {
+				position: absolute;
+				
+				margin-top: 73px;
+				font-size: 25px;
+				
+				background-image: url( '/image/design/icq.gif' );
+				background-position: 200px;
+				background-repeat: no-repeat;
+			}
+	
+	table.structure td.catalogue {
+		width: 270px;
+		padding-bottom: 150px;
+	}
+
+		table.structure td.catalogue div.catalogue_back {
+			background-image: url( '/image/design/catalogue_bg.jpg' );
+			background-position: center top;
+			background-repeat: repeat-y;
+		}
+
+		table.structure td.catalogue div.catalogue_outer {
+			background-image: url( '/image/design/catalogue_header_bg.jpg' );
+			background-position: top;
+			background-repeat: no-repeat;
+		}
+
+		table.structure td.catalogue div.catalogue_inner {
+			background-image: url( '/image/design/catalogue_footer_bg.jpg' );
+			background-position: bottom;
+			background-repeat: no-repeat;
+			
+			padding-bottom: 25px;
+			
+			min-height: 160px;
+			height: auto !important;
+			height: 160px;
+		}
+		
+			table.structure td.catalogue div.catalogue_inner div.search_title {
+				color: #ffffff;
+				font-weight: bold;
+				
+				padding-top: 10px;
+				padding-left: 35px;
+			}
+			
+			table.structure td.catalogue div.catalogue_inner div.search_input {
+				padding-top: 5px;
+				padding-left: 53px;
+			}
+			
+				table.structure td.catalogue div.catalogue_inner div.search_input input.search_input {
+					width: 160px;
+				}
+				
+				table.structure td.catalogue div.catalogue_inner div.search_input input.search_button {
+					width: 20px;
+					border: none;
+					background-color: transparent;
+					background-image: url( '/image/design/catalogue_item.gif' );
+					background-position: 10px 4px;
+					background-repeat: no-repeat;
+				}
+			
+			table.structure td.catalogue div.catalogue_inner a {
+				color: #ffffff;
+			}
+			
+				table.structure td.catalogue div.catalogue_inner div.menu_group a {
+					font-weight: bold;
+					text-decoration: none;
+				}
+			
+			table.structure td.catalogue div.catalogue_inner div.menu_group {
+				padding-top: 15px;
+				padding-left: 35px;
+				padding-right: 30px;
+			}
+			
+			table.structure td.catalogue div.catalogue_inner div.menu_category {
+				padding-top: 3px;
+				padding-left: 55px;
+				padding-right: 30px;
+				
+				background-image: url( '/image/design/catalogue_item.gif' );
+				background-position: 38px 7px;
+				background-repeat: no-repeat;
+			}
+
+	table.structure td.content {
+		width: 728px;
+		padding-top: 130px;
+	}
+
+	table.structure td.bottom {
+		padding-left: 300px;
+		padding-top: 10px;
+	}
+	
+	table.structure td.footer {
+		height: 110px;
+	}
+
+		table.structure td.footer div.logo {
+			position: absolute;
+			
+			width: 245px;
+			height: 40px;
+			
+			margin-left: 250px;
+			margin-top: 40px;
+		}
+
+			table.structure td.footer div.logo img {
+				width: 100%;
+				height: 100%;
+			}
+
+		table.structure td.footer div.copyright {
+			position: absolute;
+			
+			margin-left: 505px;
+			margin-top: 47px;
+		}
+
+		table.structure td.footer div.menu {
+			position: absolute;
+			
+			width: 350px;
+			
+			margin-left: 645px;
+			margin-top: 25px;
+			
+			text-align: right;
+		}
+
+			table.structure td.footer div.menu a {
+				color: #333333;
+				padding: 0px 10px 0px 10px;
+			}
+
+		table.structure td.footer div.counters {
+			position: absolute;
+			
+			width: 350px;
+			height: 50px;
+			
+			margin-left: 645px;
+			margin-top: 50px;
+			
+			text-align: center;
+		}
+
+table.cart {
+	width: 100%;
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+
+	table.cart td {
+		padding: 3px;
+		border: 1px solid #2B256F;
+		text-align: left;
+		vertical-align: middle;
+	}
+	
+	table.cart tr.header td {
+		font-weight: bold;
+		text-align: center;
+	}
+	
+	table.cart td.counter {
+		width: 30px;
+		text-align: right;
+	}
+
+	table.cart td.price {
+		width: 50px;
+		text-align: right;
+	}
+
+	table.cart td.count {
+		width: 50px;
+		text-align: right;
+	}
+	
+		table.cart td.count input {
+			width: 40px;
+			border: none;
+			background-color: transparent;
+			text-align: right;
+		}
+
+	table.cart td.cost {
+		width: 70px;
+		text-align: right;
+	}
+
+	table.cart td.change {
+		width: 70px;
+		text-align: center;
+	}
+
+	table.cart td.delete {
+		width: 70px;
+		text-align: center;
+	}
+	
+	table.cart tr.order_sum td {
+		border: none;
+		text-align: right;
+		font-weight: bold;
+	}
+	
+	table.cart tr.buttons td {
+		border: none;
+	}
+	
+		table.cart tr.buttons input {
+			width: 100px;
+			margin-right: 20px;
+		}
+
+table.order {
+	width: 100%;
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+
+	table.order td {
+		padding: 3px;
+		text-align: left;
+		vertical-align: top;
+	}
+	
+	table.order td.title {
+		width: 200px;
+		font-weight: bold;
+	}
+
+		table.order td.value input {
+			width: 50%;
+		}
+	
+		table.order td.value textarea {
+			width: 100%;
+		}
+	
+		table.order tr.buttons input {
+			width: 100px;
+		}
+
+table.price_filter {
+	width: 100%;
+	height: 30px;
+	border-collapse: collapse;
+}
+
+	table.price_filter td {
+		padding: 0px;
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	table.price_filter td.catalogue {
+		width: 75px;
+		padding-bottom: 0px;
+		font-weight: bold;
+	}
+	
+		table.price_filter td.catalogue_select select {
+			width: 400px;
+		}
+
+	table.price_filter td.show {
+		width: 220px;
+	}
+	
+		table.price_filter td.show input.show {
+			width: 70px;
+		}
+	
+		table.price_filter td.show input.print {
+			width: 140px;
+		}
+	
+	table.price_filter td.sort {
+		height: 30px;
+		font-weight: bold;
+		text-align: right;
+	}
+	
+		table.price_filter td.sort a {
+			font-weight: normal;
+		}
+
+table.price_list {
+	width: 100%;
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+
+	table.price_list tr {
+		background-color: transparent;
+	}
+
+	table.price_list tr.selected {
+		background-color: #f0f0ff;
+	}
+
+	table.price_list td {
+		padding: 3px;
+		border: 1px solid #cccccc;
+		vertical-align: middle;
+	}
+
+	table.price_list td.catalogue {
+		height: 20px;
+		padding-bottom: 3px;
+		text-indent: 40px;
+		font-weight: bold;
+	}
+	
+		table.price_list td.title a {
+			color: #000000;
+			text-decoration: none;
+		}
+	
+		table.price_list td.title a:hover {
+			text-decoration: underline;
+		}
+
+	table.price_list td.brand {
+		width: 120px;
+	}
+
+	table.price_list td.price {
+		width: 80px;
+		text-align: right;
+		font-weight: bold;
+	}
+
+table.price_nav {
+	width: 100%;
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+
+	table.price_nav td {
+		padding: 5px;
+		vertical-align: middle;
+	}
+
+	table.price_nav td.up {
+		text-align: left;
+	}
+
+	table.price_nav td.print {
+		text-align: right;
+	}
+	
+		table.price_nav td.print input {
+			width: 140px;
+		}
+
+div.print_version {
+	padding: 20px;
+}
+		
+table.print_head {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	table.print_head td {
+		padding: 5px;
+		vertical-align: top;
+	}
+
+	table.print_head td.left {
+		width: 30%;
+		text-align: left;
+	}
+
+	table.print_head td.center {
+		width: 40%;
+		text-align: center;
+	}
+	
+	table.print_head td.right {
+		width: 30%;
+		text-align: right;
+	}
+	
+		table.print_head td.right input {
+			width: 100px;
+		}
+
+table.search_list {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	table.search_list td {
+		padding: 5px;
+		text-align: left;
+	}
+
+	table.search_list td.counter {
+		width: 20px;
+		text-align: right;
+	}
+
+table.product_filter {
+	width: 100%;
+	height: 30px;
+	border-collapse: collapse;
+}
+
+	table.product_filter td {
+		padding: 0px;
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	table.product_filter td.brand {
+		width: 50px;
+		font-weight: bold;
+	}
+	
+	table.product_filter td.price_from {
+		width: 70px;
+		font-weight: bold;
+	}
+		
+	table.product_filter td.price_from_input {
+		width: 100px;
+	}
+		
+		table.product_filter td.price_from_input input {
+			width: 100px;
+		}
+	
+	table.product_filter td.price_to {
+		width: 40px;
+		font-weight: bold;
+	}
+
+	table.product_filter td.price_to_input {
+		width: 100px;
+	}
+		
+		table.product_filter td.price_to_input input {
+			width: 100px;
+		}
+	
+	table.product_filter td.price_rub {
+		width: 40px;
+		font-weight: bold;
+	}
+
+	table.product_filter td.search {
+		width: 130px;
+		text-align: right;
+	}
+	
+		table.product_filter td.search input {
+			width: 100px;
+		}
+	
+	table.product_filter td.sort {
+		width: 210px;
+		height: 30px;
+		font-weight: bold;
+		text-align: left;
+	}
+	
+		table.product_filter td.sort a {
+			font-weight: normal;
+		}
+	
+	table.product_filter td.count {
+		height: 30px;
+		font-weight: bold;
+		text-align: right;
+	}
+	
+	table.product_filter td.pages {
+		text-align: left;
+	}
+
+div.brand_select table {
+	width: 100%;
+}
+
+	div.brand_select a {
+		color: #2B256F;
+		font-weight: bold;
+	}
+
+	div.brand_select table td{
+		width: 33%;
+	}
+
+table.product_pages {
+	width: 100%;
+	margin: 15px 0px 15px 0px;
+	border-collapse: collapse;
+}
+
+	table.product_pages td {
+		padding: 0px;
+	}
+
+	table.product_pages td.left {
+		text-align: left;
+		font-weight: bold;
+	}
+
+	table.product_pages td.right {
+		font-size: 12px;
+		font-weight: bold;
+		text-align: right;
+		word-spacing: 5px;
+	}
+	
+	table.product_pages td.right a {
+		font-size: 12px;
+		font-weight: normal;
+		color: black;
+	}
+
+table.product_list {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	table.product_list td {
+		padding: 10px 0px 10px 0px;
+		vertical-align: top;
+		
+		border-bottom: 1px dashed #aaaaaa;
+	}
+
+	table.product_list td.last {
+		border: none;
+	}
+
+table.product_item {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	table.product_item td {
+		padding: 0px;
+		text-align: left;
+		vertical-align: top;
+		
+		border: none;
+	}
+
+	table.product_item td.title {
+		text-align: left;
+		padding-bottom: 10px;
+		
+		height: 30px;
+	}
+
+		table.product_item td.title a {
+			color: #2B256F;
+			font-weight: bold;
+			font-size: 15px;
+		}
+
+	table.product_item td.image {
+		width: 150px;
+		text-align: center;
+		vertical-align: top;
+	}
+	
+	table.product_item td.price {
+	}
+		
+		table.product_item td.price div.marker {
+			height: 60px;
+		}
+		
+		table.product_item td.price div.price_old {
+			height: 20px;
+			
+			color: #aaaaaa;
+			font-size: 15px;
+			text-decoration: line-through;
+		}
+		
+		table.product_item td.price div.price {
+			color: #831200;
+			font-size: 20px;
+		}
+		
+		table.product_item td.price div.cart {
+			padding-top: 10px;
+		}
+
+table.product {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	table.product td {
+		padding: 0px;
+		vertical-align: top;
+	}
+
+	table.product td.left {
+		width: 300px;
+		text-align: center;
+	}
+	
+		table.product td.left table.picture_table {
+			width: 100%;
+			border-collapse: collapse;
+			
+			margin-top: 5px;
+		}
+
+			table.product td.left table.picture_table td {
+				padding: 5px;
+				text-align: left;
+				vertical-align: top;
+			}
+	
+	table.product td.right {
+		text-align: left;
+		padding-left: 20px;
+	}
+	
+		table.product td.right table.price_table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+			table.product td.right table.price_table td {
+				padding: 0px;
+				text-align: left;
+				vertical-align: top;
+			}
+			
+			table.product td.right table.price_table td.marker {
+			}
+			
+			table.product td.right table.price_table td.price {
+				width: 100px;
+			}
+			
+				table.product td.right table.price_table td.price div.price_old {
+					color: #aaaaaa;
+					font-size: 15px;
+					text-decoration: line-through;
+				}
+			
+				table.product td.right table.price_table td.price div.price {
+					color: #831200;
+					font-size: 20px;
+				}
+				
+				table.product td.right table.price_table td.price div.cart {
+					padding-top: 10px;
+				}
+
+div.file_list {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+div.file_list a {
+	margin-left: 40px;
+}
+
+div.description {
+	margin-top: 10px;
+}
+
+table.catalogue_list {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	table.catalogue_list td {
+		padding: 10px;
+		text-align: center;
+		vertical-align: top;
+		
+		border-bottom: 1px dashed #aaaaaa;
+	}
+
+	table.catalogue_list td.last {
+		border: none;
+	}
+
+div.path {
+	font-weight: bold;
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+
+div.path a {
+	color: #2B256F;
+	font-weight: bold;
+	font-size: 15px;
+}
+.anta_text {
+	text-align:justify;
+}
+.anta_text p {
+	padding:10px 0px 10px 0px;
+}
+
+.glavn {
+	color: #FFFFFF;
+	display: inline;
+	font-weight: normal;
+	margin-left: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: #262767;
+	font-size: 16px;
+}

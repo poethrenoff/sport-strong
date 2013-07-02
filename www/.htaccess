@@ -1,0 +1,34 @@
+<Files *>
+	Options -Indexes +FollowSymLinks
+</Files>
+
+DirectoryIndex index.php
+
+ErrorDocument 404 http://sport-strong.ru/error404.php
+
+php_flag file_uploads on
+php_value post_max_size 12M
+php_value upload_max_filesize 10M
+
+php_value default_charset "utf-8"
+php_value mbstring.internal_encoding "utf-8"
+
+php_flag short_open_tag on
+
+RewriteCond %{THE_REQUEST} ^GET
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_URI} !(.*).html$ 
+RewriteCond %{REQUEST_URI} !(.*)/$ 
+RewriteRule ^(.*)$ http://www.sport-strong.ru/$1/ [L,R=301] 
+
+RewriteEngine On
+
+RewriteRule ^sitemap.xml sitemap.php [L]
+
+RewriteCond %{HTTP_HOST} ^www.sport-strong.ru$ [NC]
+RewriteRule ^(.*)$ http://sport-strong.ru/$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} !admin
+RewriteRule ^(\w+)/$ catalogue.php?catalogue_url=$1 [L,QSA]
+RewriteRule ^(\w+)/(\w+)/$ product.php?product_url=$2 [L,QSA]

@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: *in_cart*
+Disallow: *in_compare*
+Disallow: *sort*
+Disallow: 
+Host: sport-strong.ru
+Sitemap: http://sport-strong.ru/sitemap.xml

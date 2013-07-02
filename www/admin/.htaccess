@@ -1,0 +1,8 @@
+<Files *>
+	AuthName "For Admin Only"
+	AuthType Basic
+	AuthUserFile /home/u194885/sport-strong.ru/www/admin/.htpasswd
+	require valid-user
+</Files> 
+
+ErrorDocument 404 http://sport-strong.ru/admin/

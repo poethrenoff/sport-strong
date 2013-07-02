@@ -1,0 +1,76 @@
+
+/*
+	Slideshow
+*/
+
+#slides {
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:100;
+}
+
+/*
+	Slides container
+	Important:
+	Set the width of your slides container
+	Set to display none, prevents content flash
+*/
+
+.slides_container {
+	width:750px;
+	overflow:hidden;
+	position:relative;
+	display:none;
+}
+
+/*
+	Each slide
+	Important:
+	Set the width of your slides
+	If height not specified height will be set by the slide content
+	Set to display block
+*/
+
+.slides_container a {
+	width:750px;
+	height:185px;
+	display:block;
+}
+
+.slides_container a img {
+	display:block;
+}
+
+/*
+	Pagination
+*/
+
+.pagination {
+	width:100px;
+	display:block;
+	position:absolute; bottom:8px; left:10px;
+	z-index:200;
+}
+
+.pagination li {
+	float:left;
+	margin:0 2px;
+	list-style:none;
+}
+
+.pagination li a {
+	display:block;
+	width:12px;
+	height:0px;
+	padding-top:12px;
+	background-image:url(../img/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}
+
+.pagination li.current a {
+	background-position:0 -13px;
+}
+

@@ -1,0 +1,1 @@
+{foreach name=pages item=page from=$pages}{if $page.url}<a href="{$page.url}">{$page.num}</a>{else}<b>{$page.num}</b>{/if}{if !$smarty.foreach.pages.last} {/if}{/foreach}

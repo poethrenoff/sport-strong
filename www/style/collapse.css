@@ -1,0 +1,22 @@
+
+#collapse {}
+
+#collapse span { display:block; margin-bottom:10px; background:url(../img/arrow.gif) 0 6px no-repeat; padding-left:15px;}
+
+#collapse span a {
+  font-weight:normal;
+  color:#C32B00;
+  border-bottom:1px #C32B00 dotted;
+  text-decoration:none;
+  line-height:1.5em;
+}
+#collapse span a:hover {
+
+  color:#000 !important;
+  border-bottom:1px #000 dotted;
+  text-decoration:none;
+}
+
+.line { border-bottom:1px dotted #999;}
+
+.otvet {  color:#535353; padding:10px 15px; margin-bottom:15px; line-height:1.5em;}
