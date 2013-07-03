@@ -36,8 +36,10 @@
 				$page = min( max( intval( init_string( 'page' ) ), $first_page ), $last_page );
 				$limit = $records_per_page; $offset = $records_per_page * $page;
 				
-				$search_query = 'select product_id, product_title
-					from product where ' . join( ' and ', $filter_fields ) . '
+				$search_query = 'select product.*, catalogue.*
+					from product
+						left join catalogue on catalogue.catalogue_id = product.product_catalogue
+					where ' . join( ' and ', $filter_fields ) . '
 					order by product_title limit ' . $limit . ' offset ' . $offset;
 			
 				$search_list = db::select_all( $search_query, $filter_binds );
@@ -46,8 +48,9 @@
 				foreach( $search_list as $result_index => $result_item )
 				{
 					$search_list[$result_index]['search_index'] = ++$search_index + $offset;
-					$search_list[$result_index]['product_url'] =
-						get_url( array( 'product_id' => $result_item['product_id'] ), array(), '/product.php' );
+					$search_list[$result_index]['product_url'] = $result_item['catalogue_use_url'] ?
+						('/' . $result_item['catalogue_url'] . '/' . $result_item['product_url'] . '/') :
+							get_url( array( 'product_id' => $result_item['product_id'] ), array(), '/product.php' );
 				}
 				
 				$this -> tpl -> assign( 'search_list', $search_list );

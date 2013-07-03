@@ -210,8 +210,6 @@
 				
 				self::assign_properties( $product_list, true );
 				
-				
-				
 				$product_table = array();
 				for( $i = 0; $i < ceil( count( $product_list ) / $cols_per_page ); $i++ )
 					for( $j = 0; $j < $cols_per_page; $j++ )
@@ -219,9 +217,6 @@
 							$product_table[$i][$j] = $product_list[$i * $cols_per_page + $j];
 						else 
 							$product_table[$i][$j] = array();
-
-	
-				
 				
 				$select=false;
 				foreach( $brand_list as $brand_index => $brand_item )

@@ -106,7 +106,9 @@
 				$product_ids_in = "'" . join( "', '", $product_ids_array ) . "'";
 				
 				$product_query = '
-					select * from product
+					select product.*, catalogue.*
+					from product
+						inner join catalogue on catalogue.catalogue_id = product.product_catalogue
 					where product_id in ( ' . $product_ids_in . ' )';
 				$product_list = db::select_all( $product_query );
 				

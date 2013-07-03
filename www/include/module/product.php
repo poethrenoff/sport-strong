@@ -5,7 +5,7 @@
 	{
 		// Параметры представления модуля по умолчанию
 		protected $params = array(
-			'cols_per_page_like' => 3, 'cols_per_page_picture' => 3 );
+			'cols_per_page_picture' => 3 );
 		
 		// Заполнение контента модуля
 		protected function dispatcher()
@@ -81,24 +81,16 @@
 			
 			// Похожие товары
 			$like_query = '
-				select product.*
-				from product, product_like
+				select product.*, catalogue.*
+				from product, product_like, catalogue
 				where product_like.like_product_id = product.product_id and
 					product_like.product_id = :product_id and
-					product.product_active = 1';
+					catalogue.catalogue_id = product.product_catalogue and
+					product.product_active = 1
+				order by product_order';
 			$like_list = db::select_all( $like_query, array( 'product_id' => $product_id ) );
 			
 			catalogue::assign_properties( $like_list );
-			
-			$cols_per_page_like = max( intval( $this -> params['cols_per_page_like'] ), 1 );
-			
-			$like_table = array();
-			for( $i = 0; $i < ceil( count( $like_list ) / $cols_per_page_like ); $i++ )
-				for( $j = 0; $j < $cols_per_page_like; $j++ )
-					if ( isset( $like_list[$i * $cols_per_page_like + $j] ) )
-						$like_table[$i][$j] = $like_list[$i * $cols_per_page_like + $j];
-					else 
-						$like_table[$i][$j] = array();
 			
 			$this -> tpl -> assign( $product_item );
 			
@@ -108,8 +100,7 @@
 			$this -> tpl -> assign( 'picture_table', $picture_table );
 			$this -> tpl -> assign( 'picture_cell_width', round( 100 / $cols_per_page_picture ) );
 			
-			$this -> tpl -> assign( 'like_table', $like_table );
-			$this -> tpl -> assign( 'like_cell_width', round( 100 / $cols_per_page_like ) );
+			$this -> tpl -> assign( 'like_list', $like_list );
 			
 			$this -> path = array_merge( $this -> path, array_reverse( $product_path ) );
 			

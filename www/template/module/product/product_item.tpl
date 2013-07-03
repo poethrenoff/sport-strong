@@ -32,8 +32,36 @@
 {/foreach}
 			</table>
 {/if}
+{if $like_list}
+			<h2 style="font-size:1.1em; font-weight: bold; margin: 20px 0px 20px 30px;">Похожие товары</h2>
+{foreach from=$like_list item=item}
+			<div class="kat2box" style="margin-left: 30px;">
+				<a href="{$item.product_url}" class="kat1img"><img style="max-height: 170px;max-width:130px;" src="{$item.product_picture_small}"  alt="{$item.product_title|escape}"></a>
+				<div class="kat2link"{if $item.product_price_old} style="margin-bottom: 20px"{/if}><a href="{$item.product_url}">{$item.product_title|escape}</a></div>
+{if $item.product_price_old}
+				<div class="discountblock">
+					<s>{$item.product_price_old} р.</s>
+				</div>
+{/if}
+				<div class="pricebox">
+					<div class="priceblock">
+						{$item.product_price} р.
+					</div>
+					<div class="vkorzinu">
+					{if $item.cart_url}
+						<a href="{$item.cart_url}" title="В корзину">В корзину</a>
+						{else}
+						<a href="" title="В корзине">В корзине</a>
+						
+						{/if}
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+{/foreach}
+{/if}
 		</td>
-		<td class="right">
+		<td class="right" style="vertical-align:top;">
 			<div class="marker">
 {foreach from=$marker_list item=marker}
 				<img src="{$marker.marker_picture}" alt="$marker.marker_title"/><br/>
@@ -65,54 +93,6 @@
 		</td>
 	</tr>
 </table>
-
-{if $like_table}
-<br/><h2>Похожие товары:</h2><br/>
-<table class="product_list">
-{foreach from=$like_table item=product_list name=product_table}
-	<tr>
-{foreach from=$product_list item=item}
-		<td style="width: {$like_cell_width}%"{if $smarty.foreach.product_table.last} class="last"{/if}>
-{if $item}
-			<table class="product_item">
-				<tr>
-					<td class="title" colspan="2">
-						<a href="{$item.product_url}" class="title">{$item.product_title|escape}</a>
-					</td>
-				</tr>
-				<tr>
-					<td class="image">
-						<a href="{$item.product_url}"><img src="{$item.product_picture_small}" alt="{$item.product_title|escape}" class="product"/></a>
-					</td>
-					<td class="price">
-						<div class="marker">
-{foreach from=$item.marker_list item=marker}
-							<img src="{$marker.marker_picture}" alt="$marker.marker_title"/><br/>
-{/foreach}
-						</div>
-						<div class="price">
-							{$item.product_price} р.
-						</div>
-						<div class="cart">
-{if $item.cart_url}
-							<a href="{$item.cart_url}" title="В корзину"><img src="/image/design/basket.gif" alt="В корзину"/></a>
-{else}
-							<img src="/image/design/in_basket.gif" alt="В корзине"/>
-{/if}
-						</div>
-					</td>
-				</tr>
-			</table>
-{else}
-			&nbsp;
-{/if}
-		</td>
-{/foreach}
-	</tr>
-{/foreach}
-</table>
-{/if}
-
 {else}
 <p class="p">
 	<b>По Вашему запросу ничего не найдено, обратитесь к менеджеру по телефону {$manager_phone} или e-mail: <a href="mailto:{$manager_email}">{$manager_email}</a>.</b>
