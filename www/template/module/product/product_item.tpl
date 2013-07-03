@@ -4,7 +4,7 @@
 </div>
 <table class="product">
 	<tr>
-		<td class="left" style="width: 320px; vertical-align:top;">
+		<td style="width: 320px; vertical-align:top;">
 {if $product_picture_big}
 			<a href="{$product_picture_big}" title="{$product_title|escape}" target="_blank"><img src="{$product_picture_middle}" alt="{$product_title|escape}" title="{$product_title|escape}" class="product"/></a>
 {else}
@@ -33,7 +33,7 @@
 			</table>
 {/if}
 {if $like_list}
-			<h2 style="font-size:1.1em; font-weight: bold; margin: 20px 0px 20px 30px;">Похожие товары</h2>
+			<h4 style="margin: 20px 0px 20px 30px;">Похожие товары</h4>
 {foreach from=$like_list item=item}
 			<div class="kat2box" style="margin-left: 30px;">
 				<a href="{$item.product_url}" class="kat1img"><img style="max-height: 170px;max-width:130px;" src="{$item.product_picture_small}"  alt="{$item.product_title|escape}"></a>
