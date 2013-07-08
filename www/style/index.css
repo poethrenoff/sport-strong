@@ -506,3 +506,12 @@ width:158px !important; height:31px !important; display:block; text-indent:-9999
 table.product td.left * {
 	font: normal 12px "arial", sans-serif;
 }
+#share42 {padding: 6px 6px 0; background: #FFF; border: 1px solid #E9E9E9; border-radius: 4px;}
+#share42:hover {background: #F6F6F6; border: 1px solid #D4D4D4; box-shadow: 0 0 5px #DDD;}
+#share42 a {opacity: 0.5}
+#share42:hover a {opacity: 0.7}
+#share42 a:hover {opacity: 1}
+
+.picture_table p {
+	font-size:12.8px;
+}
