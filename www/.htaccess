@@ -32,3 +32,4 @@ RewriteRule ^(.*)$ http://sport-strong.ru/$1 [R=301,L]
 RewriteCond %{REQUEST_URI} !admin
 RewriteRule ^(\w+)/$ catalogue.php?catalogue_url=$1 [L,QSA]
 RewriteRule ^(\w+)/(\w+)/$ product.php?product_url=$2 [L,QSA]
+RewriteRule ^(\w+)/brand/(\w+)/$ catalogue.php?catalogue_url=$1&brand_url=$2 [L,QSA]

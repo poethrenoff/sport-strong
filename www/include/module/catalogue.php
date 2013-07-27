@@ -118,7 +118,7 @@
 						select * from catalogue where catalogue_id = :catalogue_id and catalogue_active = 1';
 					
 					$catalogue_item = db::select( $catalogue_query, array( 'catalogue_id' => $catalogue_id ) );
-					$catalogue_item['catalogue_parent']='0';
+					//$catalogue_item['catalogue_parent']='0';
 				}
 				else
 				{
@@ -139,6 +139,16 @@
 				// Фильтр по производителю и цене
 				$filter_conds = array(); $filter_binds = array();
 				
+                if ($brand_url = init_string('brand_url')) {
+                    if ($brand_item = db::select('
+                        select brand_id from brand where brand_url = :brand_url',
+                            array('brand_url' => $brand_url))) {
+                        $_REQUEST['product_brand'] = $brand_item['brand_id'];
+                    } else {
+                        require_once('error404.php');
+                    }
+                }
+				
 				if ( $product_brand = init_string( 'product_brand' ) )
 				{
 					$filter_conds[] = 'product.product_brand = :product_brand'; $filter_binds['product_brand'] = $product_brand;
@@ -146,24 +156,27 @@
 				
 				
 				$brand_query = '
-					select distinct brand.brand_id, brand.brand_title
+					select distinct brand.brand_id, brand.brand_url, brand.brand_title
 					from product
 						left join brand on brand.brand_id = product.product_brand
 					where product.product_active = 1 and '.(($catalogue_id>0)?'product.product_catalogue = :catalogue_id':' product.product_brand='.(int)$product_brand).' 
 					order by brand.brand_title';
 				$brand_list = db::select_all( $brand_query, array( 'catalogue_id' => $catalogue_id ) );				
-				$catalogue_item['catalogue_short_title']=(isset($brand_list[0]['brand_title']))?$brand_list[0]['brand_title']:'';
+				$catalogue_item['catalogue_short_title_breadcrumb']=$catalogue_item['catalogue_short_title'];
+                $catalogue_item['catalogue_short_title']=(isset($brand_list[0]['brand_title']))?$brand_list[0]['brand_title']:'';
 
 				$catalogue_path = array();
 				$catalogue_path[] = array( 'title' => $catalogue_item['catalogue_short_title'] );				
-				$catalogue_item_temp=$catalogue_item;
-				while ( $catalogue_item_temp = db::select( 'select * from catalogue where catalogue_id = :catalogue_id',
-						array( 'catalogue_id' => $catalogue_item_temp['catalogue_parent'] ) ) )
+				$catalogue_item_temp1=$catalogue_item;
+				file_put_contents("1.txt",print_r($catalogue_item_temp1,true));
+                /*while ( $catalogue_item_temp = db::select( 'select * from catalogue where catalogue_id = :catalogue_id',
+						array( 'catalogue_id' => $catalogue_item_temp1['catalogue_parent'] ) ) )
 				{
 					$catalogue_path[] = array( 'title' => $catalogue_item_temp['catalogue_short_title'],
 						'url' => '/' . $catalogue_item_temp['catalogue_url'] . '/' );
-				}
-				
+				}*/
+				$catalogue_path[] = array('title'=>$catalogue_item['catalogue_short_title_breadcrumb']);
+
 				if ( $product_price_from = init_string( 'product_price_from' ) )
 				{
 					$filter_conds[] = 'product.product_price >= :product_price_from'; $filter_binds['product_price_from'] = $product_price_from;
@@ -219,13 +232,16 @@
 							$product_table[$i][$j] = array();
 				
 				$select=false;
-				foreach( $brand_list as $brand_index => $brand_item )
+				$selected_brand='';
+                foreach( $brand_list as $brand_index => $brand_item )
 				{
+                    $brand_list[$brand_index]['brand_url'] = '/' . $catalogue_item['catalogue_url'] . '/brand/' . $brand_item['brand_url'] . '/';
 					if ( $brand_item['brand_id'] == $product_brand )
 					{
 						$brand_list[$brand_index]['_selected'] = true;
 						$catalogue_path[0]['title']=$brand_list[$brand_index]['brand_title'];
-						$select=true;
+						$selected_brand=$brand_list[$brand_index]['brand_title'];
+                        $select=true;
 					}
 				}
 				if (($product_brand==0)&&($select==false))
@@ -259,10 +275,11 @@
 					
 				$this -> tpl -> assign( $catalogue_item );
 				
+                $this -> tpl -> assign( 'selected_brand', $selected_brand );
 				$this -> tpl -> assign( 'product_brand', $product_brand );
 				$this -> tpl -> assign( 'product_price_from', $product_price_from );
 				$this -> tpl -> assign( 'product_price_to', $product_price_to );
-				
+				//$this -> tpl -> assign( 'enable_desc', 1);
 				if (count($product_table)<1)
 				{
 						$this -> tpl -> assign( 'no_item_catalog', 1 );

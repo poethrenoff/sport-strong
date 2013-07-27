@@ -70,6 +70,7 @@
 					'catalogue_url' => array( 'title' => 'ЧПУ', 'type' => 'string', 'errors' => 'require', 'group' => array(), 'no_add' => 1 ),
 					'catalogue_description' => array( 'title' => 'Описание', 'type' => 'text', 'textarea' => 'editor' ),
 					'catalogue_description_top' => array( 'title' => 'Описание (сверху)', 'type' => 'text', 'textarea' => 'editor' ),
+                    'catalogue_description_bottom' => array( 'title' => 'Описание (снизу)', 'type' => 'text', 'textarea' => 'editor' ),
 					'catalogue_picture' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => '/image/catalogue/' ),
 					'catalogue_export' => array( 'title' => 'Экспортировать в Яндекс', 'type' => 'boolean' ),
 					'catalogue_use_url' => array( 'title' => 'ЧПУ для товаров', 'type' => 'boolean' ),
@@ -83,10 +84,11 @@
 			
 			'brand' => array(
 				'title' => 'Бренды',
-				'class' => 'content',
+				'class' => 'brand',
 				'fields' => array(
 					'brand_id' => array( 'title' => 'Идентификатор', 'type' => 'pk' ),
 					'brand_title' => array( 'title' => 'Название', 'type' => 'string', 'show' => 1, 'main' => 1, 'sort' => 'asc', 'errors' => 'require' ),
+					'brand_url' => array( 'title' => 'ЧПУ', 'type' => 'string', 'errors' => 'require', 'group' => array(), 'no_add' => 1 ),
 					'brand_country' => array( 'title' => 'Страна', 'type' => 'string', 'show' => 1 ),
 					'brand_description' => array( 'title' => 'Описание', 'type' => 'text', 'textarea' => 'editor' ),
 				),
