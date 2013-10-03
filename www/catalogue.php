@@ -37,5 +37,5 @@
 	}
 	catch ( Exception $e )
 	{
-		print $e->getFile(); print_r($e->getTrace()); //require_once('error404.php');
+		require_once('error404.php');
 	}

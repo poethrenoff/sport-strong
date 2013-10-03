@@ -10,6 +10,21 @@
 		// Заполнение контента модуля
 		protected function dispatcher()
 		{
+            if ($product_id = init_string('product_id')) {
+                if ($product_item = db::select('
+                    select product_url, catalogue_url, catalogue_use_url
+                    from product
+                        left join catalogue on catalogue.catalogue_id = product.product_catalogue
+                    where product_id = :product_id',
+                        array('product_id' => $product_id))) {
+                        header('HTTP/1.1 301 Moved Permanently');
+                        header('Location: ' . ($product_item['catalogue_use_url'] ?
+                            ('/' . $product_item['catalogue_url'] . '/' . $product_item['product_url'] . '/') :
+                                get_url( array( 'product_id' => $product_item['product_id'] ), array(), '/product.php' )));
+                        exit;
+                }
+            }
+            
 			if ($product_url = init_string('product_url')) {
 				if ($product_item = db::select('
 					select product_id from product where product_url = :product_url',
@@ -27,7 +42,8 @@
 					inner join catalogue on catalogue.catalogue_id = product.product_catalogue
 				where product_id = :product_id and product_active = 1';
 			$product_list = db::select_all( $product_query, array( 'product_id' => $product_id ) );
-			
+            $product_price = $product_list[0]['product_price'];
+            $catalogue_id = $product_list[0]['catalogue_id'];
 			if ( count( $product_list ) == 0 )
 			{
 				$this -> tpl -> assign( 'manager_email', get_preference( 'manager_email' ) );
@@ -80,15 +96,28 @@
 					get_url( array( 'article_id' => $article_item['article_id'] ), array(), '/article.php' );
 			
 			// Похожие товары
-			$like_query = '
+			/*$like_query = '
 				select product.*, catalogue.*
 				from product, product_like, catalogue
 				where product_like.like_product_id = product.product_id and
 					product_like.product_id = :product_id and
 					catalogue.catalogue_id = product.product_catalogue and
 					product.product_active = 1
-				order by product_order';
-			$like_list = db::select_all( $like_query, array( 'product_id' => $product_id ) );
+				order by product_order';*/
+            //echo($product_price);
+            $price_from=$product_price*0.7;
+            $price_to=$product_price*1.3;
+            $like_query = '
+				select product.*,catalogue.* from product,catalogue
+                where product.product_id in(
+                select distinct(product_id) from product
+                where product_price > :price_from and product_price < :price_to and
+                catalogue.catalogue_id = product.product_catalogue and
+                product_active = 1
+                and product_id<>:product_id
+                and product_catalogue = :catalogue_id)
+                order by product_order limit 6';
+			$like_list = db::select_all( $like_query, array( 'price_from' => $price_from,'price_to' => $price_to,'product_id'=>$product_id,'catalogue_id'=>$catalogue_id ) );
 			
 			catalogue::assign_properties( $like_list );
 			
@@ -107,6 +136,7 @@
 			$this -> content = $this -> tpl -> fetch( 'module/product/product_item.tpl' );
 			
 			$this -> meta = $this -> read_meta( 'product', $product_id );
+            $this -> meta['title'] = $this -> meta['title'].' купить в интернет-магазине, посмотреть описание, узнать цену.';
 		}
 	}
 ?>

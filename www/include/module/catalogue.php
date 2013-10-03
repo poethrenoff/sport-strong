@@ -24,6 +24,16 @@
 		// Вывод списка подкаталогов или товаров
 		protected function get_catalogue()
 		{
+            if ($catalogue_id = init_string('catalogue_id')) {
+                if ($catalogue_item = db::select('
+                    select catalogue_url from catalogue where catalogue_id = :catalogue_id',
+                        array('catalogue_id' => $catalogue_id))) {
+                        header('HTTP/1.1 301 Moved Permanently');
+                        header('Location: ' . '/' . $catalogue_item['catalogue_url'] . '/');
+                        exit;
+                }
+            }
+            
 			if ($catalogue_url = init_string('catalogue_url')) {
 				if ($catalogue_item = db::select('
 					select catalogue_id from catalogue where catalogue_url = :catalogue_url',
@@ -124,8 +134,9 @@
 				{
 					$catalogue_item['catalogue_id']=0;
 					//$catalogue_item['catalogue_description']='test';
-					$catalogue_item['catalogue_short_title']='z';
+					$catalogue_item['catalogue_short_title']='Бренды';
 					$catalogue_item['catalogue_parent']='0';
+                    $catalogue_item['catalogue_url']='';
 				}
 				if ( init_string( 'page' ) )
 					$catalogue_item['catalogue_description'] = '';
@@ -138,7 +149,7 @@
 				
 				// Фильтр по производителю и цене
 				$filter_conds = array(); $filter_binds = array();
-				
+				//print_r($_GET);
                 if ($brand_url = init_string('brand_url')) {
                     if ($brand_item = db::select('
                         select brand_id from brand where brand_url = :brand_url',
@@ -156,7 +167,7 @@
 				
 				
 				$brand_query = '
-					select distinct brand.brand_id, brand.brand_url, brand.brand_title
+					select distinct brand.brand_id, brand.brand_url, brand.brand_title, brand.brand_description
 					from product
 						left join brand on brand.brand_id = product.product_brand
 					where product.product_active = 1 and '.(($catalogue_id>0)?'product.product_catalogue = :catalogue_id':' product.product_brand='.(int)$product_brand).' 
@@ -168,7 +179,7 @@
 				$catalogue_path = array();
 				$catalogue_path[] = array( 'title' => $catalogue_item['catalogue_short_title'] );				
 				$catalogue_item_temp1=$catalogue_item;
-				file_put_contents("1.txt",print_r($catalogue_item_temp1,true));
+				//file_put_contents("1.txt",print_r($catalogue_item_temp1,true));
                 /*while ( $catalogue_item_temp = db::select( 'select * from catalogue where catalogue_id = :catalogue_id',
 						array( 'catalogue_id' => $catalogue_item_temp1['catalogue_parent'] ) ) )
 				{
@@ -233,6 +244,7 @@
 				
 				$select=false;
 				$selected_brand='';
+                $all_path=$catalogue_item['catalogue_url'];
                 foreach( $brand_list as $brand_index => $brand_item )
 				{
                     $brand_list[$brand_index]['brand_url'] = '/' . $catalogue_item['catalogue_url'] . '/brand/' . $brand_item['brand_url'] . '/';
@@ -241,6 +253,11 @@
 						$brand_list[$brand_index]['_selected'] = true;
 						$catalogue_path[0]['title']=$brand_list[$brand_index]['brand_title'];
 						$selected_brand=$brand_list[$brand_index]['brand_title'];
+                        if($catalogue_id==0)
+                        {
+                        $this -> tpl -> assign( 'catalogue_description_top', $brand_list[$brand_index]['brand_description'] );
+                        $this -> meta = $this -> read_meta( 'brand', $product_brand ? $product_brand : '' );
+                        }
                         $select=true;
 					}
 				}
@@ -266,7 +283,7 @@
 				$this -> tpl -> assign( 'price_list_url', $price_list_url );
 				if ($catalogue_id>0)
 				{
-					array_unshift( $brand_list, array('brand_title' => 'Все марки', '_selected' => !$product_brand ) );
+					array_unshift( $brand_list, array('brand_title' => 'Все марки', '_selected' => !$product_brand, 'brand_url'=>'/'.$all_path.'/' ) );
 				}
 				
 				$this -> tpl -> assign( 'brand_list', $brand_list );
@@ -299,7 +316,10 @@
 				$this -> content = $this -> tpl -> fetch( 'module/catalogue/product_list.tpl' );
 			}
 			
-			$this -> meta = $this -> read_meta( 'catalogue', $catalogue_id ? $catalogue_id : '' );
+			if($catalogue_id!=0)
+            {
+                 $this -> meta = $this -> read_meta( 'catalogue', $catalogue_id ? $catalogue_id : '' );
+            }
 		}
 		
 		// Вывод древовидного меню категорий
