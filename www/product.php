@@ -18,6 +18,9 @@
 		$catalogue_menu = module::factory( 'catalogue' );
 		$catalogue_menu -> init( array( 'mode' => 'menu' ) );
 		
+		$catalogue_brand = module::factory( 'catalogue' );
+		$catalogue_brand -> init( array( 'mode' => 'brand' ) );
+		
 		$news_short = module::factory( 'news' );
 		$news_short -> init( array( 'mode' => 'main', 'items_per_page' => 3 ) );
 		
@@ -29,6 +32,7 @@
 		$tpl -> assign( 'path', $product_content -> get_path() );
 		
 		$tpl -> assign( 'menu', $catalogue_menu -> get_content() );
+		$tpl -> assign( 'brand', $catalogue_brand -> get_content() );
 		$tpl -> assign( 'news', $news_short -> get_content() );
 		
 		$tpl -> display( 'index.tpl' );

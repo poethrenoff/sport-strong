@@ -29,6 +29,8 @@ RewriteRule ^sitemap.xml sitemap.php [L]
 RewriteCond %{HTTP_HOST} ^www.sport-strong.ru$ [NC]
 RewriteRule ^(.*)$ http://sport-strong.ru/$1 [R=301,L]
 
+RewriteRule ^grify_dlya_ganteley_i_shtang/$ http://sport-strong.ru/shtangi_diski_i_grify_dlya_ganteley_i_shtang/ [R=301,L]
+
 RewriteCond %{REQUEST_URI} !admin
 RewriteRule ^(\w+)/$ catalogue.php?catalogue_url=$1 [L,QSA]
 RewriteRule ^brand/(\w+)/$ catalogue.php?catalogue_id=0&brand_url=$1 [L,QSA]

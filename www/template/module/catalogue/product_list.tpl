@@ -3,13 +3,22 @@
 <span >В данном разделе товар отсутствует.</span>
 </div>
 {else}
-<h1>{$catalogue_title|escape}</h1>
+<h1>{$catalogue_title|escape} {$selected_brand|escape}</h1>
+{if $selected_brand_country}
+<div style="margin-bottom: 10px; font-weight: bold;">
+	Страна: {$selected_brand_country}
+</div>
+{/if}
 {if $catalogue_description_top}
 <div style="margin-bottom: 10px">
+{if $selected_brand_picture}
+	<img src="{$selected_brand_picture}" style="max-width: 150px; max-height: 150px; margin: 0px 20px 20px 0px; float: left">
+{/if}
 	{$catalogue_description_top}
 </div>
 {/if}
 
+{if $brand_count > 1}
 <!--noindex---><div class="brands">
 	<table><tr>
 {foreach from=$brand_list item=item name=brand_list}
@@ -19,7 +28,7 @@
 {if $item._selected}
 			<li><b>{$item.brand_title|escape}</b></li>
 {else}
-			<li><a href="{$item.brand_url}">{$item.brand_title|escape}</a></li>
+			<li><a href="{$item.brand_url}" rel="{$item.brand_title|escape}">{$item.brand_title|escape}</a></li>
 {/if}
 {if ($smarty.foreach.brand_list.iteration-1) % $brand_col_count == $brand_col_count-1 || ($smarty.foreach.brand_list.iteration-1) == $brand_count-1}
 		</ul></td>
@@ -27,6 +36,7 @@
 {/foreach}
 	</tr></table>
 </div><!--/noindex--->
+{/if}
 
 <table class="product_list">
 {foreach from=$product_table item=product_list name=product_table}
@@ -79,7 +89,11 @@
 </table>
 
 <div>
-
+{if $catalogue_description_bottom}
+<div style="margin-bottom: 10px">
+	{$catalogue_description_bottom}
+</div>
+{/if}
 {if $enable_desc==1}
 	{$catalogue_description}
 {/if}

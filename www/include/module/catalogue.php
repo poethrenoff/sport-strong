@@ -12,6 +12,8 @@
 		{
 			if ( $this -> params['mode'] == 'menu' )
 				$this -> get_menu();
+			else if ( $this -> params['mode'] == 'brand' )
+				$this -> get_brand();
 			else if ( $this -> params['mode'] == 'marker_list' )
 			{
 				$this -> get_marker_list();
@@ -167,7 +169,7 @@
 				
 				
 				$brand_query = '
-					select distinct brand.brand_id, brand.brand_url, brand.brand_title, brand.brand_description
+					select distinct brand.brand_id, brand.brand_url, brand.brand_title, brand.brand_country, brand.brand_description, brand.brand_picture
 					from product
 						left join brand on brand.brand_id = product.product_brand
 					where product.product_active = 1 and '.(($catalogue_id>0)?'product.product_catalogue = :catalogue_id':' product.product_brand='.(int)$product_brand).' 
@@ -223,7 +225,7 @@
 				$limit = $records_per_page; $offset = $records_per_page * $page;
 				
 				$product_query = '
-					select product.*, catalogue.*, brand.brand_id, brand.brand_title
+					select product.*, catalogue.*, brand.brand_id, brand.brand_title, brand.brand_country
 					from product
 						left join brand on brand.brand_id = product.product_brand
 						left join catalogue on catalogue.catalogue_id = product.product_catalogue
@@ -243,7 +245,7 @@
 							$product_table[$i][$j] = array();
 				
 				$select=false;
-				$selected_brand='';
+				$selected_brand=''; $selected_brand_country='';  $selected_brand_picture='';
                 $all_path=$catalogue_item['catalogue_url'];
                 foreach( $brand_list as $brand_index => $brand_item )
 				{
@@ -253,6 +255,8 @@
 						$brand_list[$brand_index]['_selected'] = true;
 						$catalogue_path[0]['title']=$brand_list[$brand_index]['brand_title'];
 						$selected_brand=$brand_list[$brand_index]['brand_title'];
+                        $selected_brand_country=$brand_list[$brand_index]['brand_country'];
+                        $selected_brand_picture=$brand_list[$brand_index]['brand_picture'];
                         if($catalogue_id==0)
                         {
                         $this -> tpl -> assign( 'catalogue_description_top', $brand_list[$brand_index]['brand_description'] );
@@ -293,6 +297,8 @@
 				$this -> tpl -> assign( $catalogue_item );
 				
                 $this -> tpl -> assign( 'selected_brand', $selected_brand );
+                $this -> tpl -> assign( 'selected_brand_country', $selected_brand_country );
+                $this -> tpl -> assign( 'selected_brand_picture', $selected_brand_picture );
 				$this -> tpl -> assign( 'product_brand', $product_brand );
 				$this -> tpl -> assign( 'product_price_from', $product_price_from );
 				$this -> tpl -> assign( 'product_price_to', $product_price_to );
@@ -338,6 +344,37 @@
 			$this -> tpl -> assign( 'catalogue_tree', $catalogue_tree );
 			
 			$this -> content = $this -> tpl -> fetch( 'module/catalogue/catalogue_menu.tpl' );
+		}
+		
+		// Вывод списка брендов
+		protected function get_brand()
+		{
+            //получение списка брендов
+            $catalogue_id=0;
+            $brand_query = '
+                select distinct brand.brand_id, brand.brand_title,brand.brand_url
+                from product
+                    left join brand on brand.brand_id = product.product_brand
+                where product.product_active = 1 
+                order by brand.brand_title';
+            $mas_1=$mas_2=$mas_3=$mas_4=array();
+            $brand_list = db::select_all( $brand_query, array( 'catalogue_id' => $catalogue_id ) );						
+            
+            for($ii=0;$ii<count($brand_list);$ii++)
+            {
+                if (($ii+4)%4==0) $mas_1[]=$brand_list[$ii];
+                if (($ii+4)%4==1) $mas_2[]=$brand_list[$ii];
+                if (($ii+4)%4==2) $mas_3[]=$brand_list[$ii];
+                if (($ii+4)%4==3) $mas_4[]=$brand_list[$ii];
+                
+            }
+            
+            $this -> tpl -> assign( 'brand_list_1',$mas_1 );
+            $this -> tpl -> assign( 'brand_list_2',$mas_2 );
+            $this -> tpl -> assign( 'brand_list_3',$mas_3 );
+            $this -> tpl -> assign( 'brand_list_4',$mas_4 );
+			
+			$this -> content = $this -> tpl -> fetch( 'module/catalogue/catalogue_brand.tpl' );
 		}
 		
 		// Вывод таблицу маркерованных товаров

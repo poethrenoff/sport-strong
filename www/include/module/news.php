@@ -49,7 +49,12 @@
 					$this -> tpl -> assign( 'pages', pages( $last_page + 1, $page ) );
 			}
 			
-			$news_template = $this -> params['mode'] == 'main' ? 'news_list_short.tpl' : 'news_list.tpl';
+			if($this -> params['mode'] == 'main')
+            $news_template =  'news_list_short.tpl';
+            elseif($this -> params['mode'] == 'map')
+            $news_template =  'news_list_map.tpl';
+            else 
+            $news_template =  'news_list.tpl';
 			$this -> content = $this -> tpl -> fetch( 'module/news/' . $news_template );
 			
 			

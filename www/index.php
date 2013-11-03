@@ -29,6 +29,9 @@ ob_start();
 		$catalogue_menu = module::factory( 'catalogue' );
 		$catalogue_menu -> init( array( 'mode' => 'menu' ) );
 		
+		$catalogue_brand = module::factory( 'catalogue' );
+		$catalogue_brand -> init( array( 'mode' => 'brand' ) );
+		
 		$news_short = module::factory( 'news' );
 		$news_short -> init( array( 'mode' => 'main', 'items_per_page' => 3 ) );
 		
@@ -44,32 +47,9 @@ ob_start();
 		$text_content_bottom -> init( array( 'tag' => 'bottom' ) );
 		
 		$content = 
-			$text_content_top -> get_content(). /*.
-			$catalogue_marker_list -> get_content() . */
-			
+			$text_content_top -> get_content().
 			$text_content_bottom -> get_content();
-			
-		//получение списка брендов
-		$catalogue_id=0;
-		$brand_query = '
-			select distinct brand.brand_id, brand.brand_title
-			from product
-				left join brand on brand.brand_id = product.product_brand
-			where product.product_active = 1 
-			order by brand.brand_title';
-		$mas_1=$mas_2=$mas_3=$mas_4=array();
-		$brand_list = db::select_all( $brand_query, array( 'catalogue_id' => $catalogue_id ) );						
-		
-		for($ii=0;$ii<count($brand_list);$ii++)
-		{
-			if (($ii+4)%4==0) $mas_1[]=$brand_list[$ii];
-			if (($ii+4)%4==1) $mas_2[]=$brand_list[$ii];
-			if (($ii+4)%4==2) $mas_3[]=$brand_list[$ii];
-			if (($ii+4)%4==3) $mas_4[]=$brand_list[$ii];
-			
-		}
-		
-		
+        
 		$tpl -> assign( 'content', $content );
 		if ($_SERVER['REQUEST_URI']='/')
 		{
@@ -80,12 +60,8 @@ ob_start();
 			$tpl -> assign( 'main_page_flag', 0);
 		}
 		
-		$tpl -> assign( 'brand_list_1',$mas_1 );
-		$tpl -> assign( 'brand_list_2',$mas_2 );
-		$tpl -> assign( 'brand_list_3',$mas_3 );
-		$tpl -> assign( 'brand_list_4',$mas_4 );
-		
 		$tpl -> assign( 'menu', $catalogue_menu -> get_content() );
+		$tpl -> assign( 'brand', $catalogue_brand -> get_content() );
 		$tpl -> assign( 'meta', $text_content_top -> get_meta() );
 		$tpl -> assign( 'news', $news_short -> get_content() );
 		

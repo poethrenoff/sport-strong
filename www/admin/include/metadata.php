@@ -91,6 +91,7 @@
 					'brand_url' => array( 'title' => 'ЧПУ', 'type' => 'string', 'errors' => 'require', 'group' => array(), 'no_add' => 1 ),
 					'brand_country' => array( 'title' => 'Страна', 'type' => 'string', 'show' => 1 ),
 					'brand_description' => array( 'title' => 'Описание', 'type' => 'text', 'textarea' => 'editor' ),
+					'brand_picture' => array( 'title' => 'Изображение', 'type' => 'image', 'upload_dir' => '/image/brand/' ),
 				),
 				'links' => array(
 					'product' => array( 'table' => 'product', 'field' => 'product_brand' )

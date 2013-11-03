@@ -72,23 +72,23 @@ jQuery(document).ready(function(){
 
 </head>
 <body>
-
 <div id="container" >
 <div class="wrap">
 
 	<!-- header-->
 	<div id="header">
 	
-    	<!--noindex--><div class="topmenu">
-        <ul>
-        <li><a href="/">Главная</a></li>
-        <li><a href="/about.php">О компании</a></li>
-        <li><a href="/delivery.php">Доставка и оплата</a></li>
-        <!--<li><a href="/price.php">Прайс-лист</a></li>-->
-        <!--<li><a href="#">Новости</a></li>-->
-        <li><a href="/article.php">Статьи</a></li>
-        <li><a href="/question.php">Вопросы</a></li>
-        <li><a href="/contact.php">Контактная информация</a></li>
+		<div class="topmenu">
+		<ul>
+			<li><a href="/">Главная</a></li>
+			<li><a href="/about.php">О компании</a></li>
+			<li><a href="/delivery.php">Доставка и оплата</a></li>
+			<!--<li><a href="/price.php">Прайс-лист</a></li>-->
+			<!--<li><a href="#">Новости</a></li>-->
+			<li><a href="/article.php">Статьи</a></li>
+			<li><a href="/question.php">Вопросы</a></li>
+			<li><a href="/contact.php">Контактная информация</a></li>
+			{$brand}
         </ul>
 		
 		<noindex><nofollow>
@@ -98,7 +98,7 @@ jQuery(document).ready(function(){
 		</div>
 		</nofollow></noindex>
 		
-        </div><!--/noindex-->
+        </div>
         
         <div class="logobox">
         	
@@ -133,7 +133,10 @@ jQuery(document).ready(function(){
 
     <!-- body-->
     <div id="body">
-    
+    <div style="position:absolute;top:150px;right:0px;">
+    <div class="share42init" data-top2="0" data-top1="130"></div>
+    <script type="text/javascript" src="http://sport-strong.ru/share42/share42.js"></script> 
+    </div>
     	<div class="bodybox">
         
         <!-- left -->
@@ -143,7 +146,7 @@ jQuery(document).ready(function(){
             
             <div class="leftmenubox">
             <span class="lmtitle">Каталог</span>
-            <!--noindex-->{ $menu }<!--/noindex-->
+            { $menu }
 			</div><!-- # leftmenubox-->
             <!-- news box -->
             <!--noindex-->{ $news }<!--/noindex-->
@@ -255,43 +258,8 @@ jQuery(document).ready(function(){
 				{$output_marker_list}
 			</div>
             <!-- #tabs -->
-            
-            
-            <!-- brands -->
-            <div class="brands">
-				<span>Бренды</span>
-				
-				<ul>
-					{foreach from=$brand_list_1 item=item name=mas_1}
-						<li><a href="/catalogue.php?catalogue_id=0&product_brand={$item.brand_id}">{$item.brand_title}</a></li>
-					{/foreach}					
-				</ul>
-				
-				<ul>
-					{foreach from=$brand_list_2 item=item2 name=mas_2}
-						<li><a href="/catalogue.php?catalogue_id=0&product_brand={$item2.brand_id}">{$item2.brand_title}</a></li>
-					{/foreach}					
-				</ul>
-				
-				<ul>
-					{foreach from=$brand_list_3 item=item3 name=mas_3}
-						<li><a href="/catalogue.php?catalogue_id=0&product_brand={$item3.brand_id}">{$item3.brand_title}</a></li>
-					{/foreach}					
-				</ul>
-				<ul>
-					{foreach from=$brand_list_4 item=item4 name=mas_4}
-						<li><a href="/catalogue.php?catalogue_id=0&product_brand={$item4.brand_id}">{$item4.brand_title}</a></li>
-					{/foreach}					
-				</ul>		 		
-				
 
-				
-				<div class="clear"></div>
-			</div>
 			{/if}
-			
-            <!-- #brands -->
-            
             
             <!-- text -->
 {$path}
@@ -313,7 +281,7 @@ jQuery(document).ready(function(){
   <!-- footer-->
 	<div id="footer">
 	
-    	<div class="f1">© 2013 Sport-Strong.ru</div>
+    	<div class="f1">© 2013 Sport-Strong.ru <a href="/map.php">Карта сайта</a></div>
         
         <div class="f2">
 <span>+7 (916) 810 09 02, +7 (495) 778 66 59</span><br>
@@ -347,15 +315,25 @@ e-mail:  sport-strong@yandex.ru <br>
 <!-- end of Top100 code -->
 </div>
 <noindex><nofollow>
+<!-- Yandex.Metrika informer -->
+<a href="http://metrika.yandex.ru/stat/?id=22210366&amp;from=informer"
+target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/22210366/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+style="width:88px; height:31px; border:0;" alt="??????.???????" title="??????.???????: ?????? ?? ??????? (?????????, ?????? ? ?????????? ??????????)" onclick="try{Ya.Metrika.informer({i:this,id:22210366,lang:'ru'});return false}catch(e){}"/></a>
+<!-- /Yandex.Metrika informer -->
+
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
 (function (d, w, c) {
     (w[c] = w[c] || []).push(function() {
         try {
-            w.yaCounter10144747 = new Ya.Metrika({id:10144747, enableAll: true, webvisor:true});
-        } catch(e) {}
+            w.yaCounter22210366 = new Ya.Metrika({id:22210366,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
     });
-    
+
     var n = d.getElementsByTagName("script")[0],
         s = d.createElement("script"),
         f = function () { n.parentNode.insertBefore(s, n); };
@@ -364,12 +342,13 @@ e-mail:  sport-strong@yandex.ru <br>
     s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
 
     if (w.opera == "[object Opera]") {
-        d.addEventListener("DOMContentLoaded", f);
+        d.addEventListener("DOMContentLoaded", f, false);
     } else { f(); }
 })(document, window, "yandex_metrika_callbacks");
 </script>
-<noscript><div><img src="//mc.yandex.ru/watch/10144747" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img src="//mc.yandex.ru/watch/22210366" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+
 
 <!--LiveInternet counter--><script type="text/javascript"><!--
 document.write("<a href='http://www.liveinternet.ru/click' "+
