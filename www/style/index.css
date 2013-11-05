@@ -230,7 +230,7 @@ table.cattab td { border:1px solid #D2D2D2; padding:1px; text-align:center}
 #menu-brands .brands_menu { border:1px solid #D2D2D2; padding:12px 14px;margin-bottom:20px;cursor: default; }
 #menu-brands .brands_menu ul { float:left; margin-right:20px; }
 #menu-brands .brands_menu ul li { line-height:2em; }
-#menu-brands .brands_menu ul li a { font-size:1.2em; color:#C32B00; }
+#menu-brands .brands_menu ul li a { font-size:1.6em; color:#C32B00; }
 #menu-brands .brands_menu ul li a:hover { text-decoration:none; color:#333; }
 
 /* brands */

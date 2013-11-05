@@ -85,10 +85,10 @@ jQuery(document).ready(function(){
 			<li><a href="/delivery.php">Доставка и оплата</a></li>
 			<!--<li><a href="/price.php">Прайс-лист</a></li>-->
 			<!--<li><a href="#">Новости</a></li>-->
-			<li><a href="/article.php">Статьи</a></li>
+			{$brand}
 			<li><a href="/question.php">Вопросы</a></li>
 			<li><a href="/contact.php">Контактная информация</a></li>
-			{$brand}
+			<li><a href="/article.php">Статьи</a></li>
         </ul>
 		
 		<noindex><nofollow>
