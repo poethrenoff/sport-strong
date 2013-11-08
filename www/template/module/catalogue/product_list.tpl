@@ -87,7 +87,7 @@
 {/if}
 	</tr>
 </table>
-
+{if !$selected_brand}
 <div>
 {if $catalogue_description_bottom}
 <div style="margin-bottom: 10px">
@@ -98,3 +98,4 @@
 	{$catalogue_description}
 {/if}
 </div>
+{/if}
