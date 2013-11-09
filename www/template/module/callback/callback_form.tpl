@@ -1,3 +1,4 @@
+	<script src="/script/check_form.js" type="text/javascript"></script>
 	<br/>
 	<h1>Обратный звонок </h1>
 {if $error}

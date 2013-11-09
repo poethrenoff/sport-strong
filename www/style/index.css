@@ -568,3 +568,14 @@ span.red_text {
 #callback_form label {width:150px;font-size: 0.8em;float: left; display: block}
 #callback_form input { border:1px solid #C3C3C3; padding:2px 4px; height:24px; width:220px;}
 #callback_form textarea { border:1px solid #C3C3C3; padding:2px 4px; height:54px; width:220px;}
+
+a.close {
+	display: block;
+	width: 13px;
+	height: 13px;
+	background: url(/img/close.png) no-repeat;
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px;
+	display: inline;
+}
