@@ -27,6 +27,8 @@
 <link href="/style/slide.css" rel="stylesheet" type="text/css" />
 	<script src="/js/jquery.easing.1.3.js"></script>
 	<script src="/js/slides.min.jquery.js"></script>
+	<script src="/js/jquery.form.min.js"></script>
+	<script src="/js/jquery.simplemodal.1.4.4.min.js"></script>
 	<script>
 		jQuery(function(){
 			jQuery('#slides').slides({
@@ -66,6 +68,28 @@ jQuery(document).ready(function(){
 		return false;
 	});
 });
+
+// Обратный звонок
+function callback_window() {
+	var ajax_callback_form = function(){
+		$('#callback_form').ajaxForm({
+			target: '#popup_content', success: ajax_callback_form, beforeSubmit: check_callback_form
+		});
+	};
+
+	var check_callback_form = function(){
+		return CheckForm.validate( document.getElementById('callback_form') );
+	};
+
+	$.post('/callback.php', {}, function(data){
+		$('#popup_content').html(data); ajax_callback_form();
+		$('#popup').modal({
+			opacity:30, overlayCss:{backgroundColor:'#000'}, overlayClose:true
+		});
+	}, 'html');
+
+	return false;
+}
 /* ]]> */
 </script>
 {/literal}
@@ -107,7 +131,7 @@ jQuery(document).ready(function(){
             </div>
             
             <div class="phones">
-(916) 810 09 02<br>(495) 778 66 59
+(916) 810 09 02<br>(495) 778 66 59<br><a href="/callback.php" class="callback" onclick="return callback_window()">Обратный звонок</a>
             </div>
             {literal}
 			<form action="/search.php" id="search" name="search" method="get" onsubmit="return ( this.search_value.value.length > 0 )">
@@ -405,6 +429,17 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 </div>   
 </div><!-- #container-->  
 </nofollow></noindex>
+
+	<!-- Popup -->  
+	<div id="popup">
+		<div id="window">
+			<a class="close simplemodal-close" href="#" title="закрыть"></a>
+			<div class="clear"></div>
+			<div id="popup_content"></div>
+			<div class="clear"></div>
+		</div>
+		<div id="window_bottom"></div>
+	</div>
 
 </body>
 </html>
