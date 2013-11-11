@@ -131,7 +131,7 @@ function callback_window() {
             </div>
             
             <div class="phones">
-(916) 810 09 02<br>(495) 778 66 59<br><a href="/callback.php" class="callback" onclick="return callback_window()">Обратный звонок</a>
+(916) 810 09 02<br>(495) 778 66 59<br><a href="/callback.php" class="callback" onclick="return callback_window()">Заказать обратный звонок</a>
             </div>
             {literal}
 			<form action="/search.php" id="search" name="search" method="get" onsubmit="return ( this.search_value.value.length > 0 )">

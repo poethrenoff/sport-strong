@@ -242,7 +242,7 @@ table.cattab td { border:1px solid #D2D2D2; padding:1px; text-align:center}
 .brands ul li a {font-size:0.8em; color:#C32B00;}
 .brands ul li a:hover {text-decoration:none; color:#333;}
 
-a.callback {font-size:0.8em; color:#C32B00; margin-left:10px;}
+a.callback {font-size:0.7em; color:#C32B00; margin-left:-25px;}
 a.callback :hover {text-decoration:none; color:#333;}
 
 /* tabs */
