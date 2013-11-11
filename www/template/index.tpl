@@ -441,5 +441,12 @@ screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 		<div id="window_bottom"></div>
 	</div>
 
+	<!-- BEGIN cloudim code {literal} -->
+	<script type="text/javascript" charset="utf-8">document.write(unescape("%3Cdiv id='cloudim_widget'%3E%3Cscript src='http://static.cloudim.ru/js/chat.js' type='text/javascript'%3E%3C/script%3E%3C/div%3E"));</script> <div id="cloudim_cr" style="position:absolute; left:-9999px;">Cloudim - <a target="_blank" href="http://cloudim.ru/">онлайн консультант для сайта</a> бесплатно.</div>
+	<script type="text/javascript" charset="utf-8">
+	Cloudim.Chat.init({uid:11545});
+	</script>
+	<!-- {/literal} END cloudim code -->
+
 </body>
 </html>
