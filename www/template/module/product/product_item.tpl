@@ -32,34 +32,6 @@
 {/foreach}
 			</table>
 {/if}
-{if $like_list}
-			<h4 style="margin: 20px 0px 20px 30px;">Похожие товары</h4>
-{foreach from=$like_list item=item}
-			<div class="kat2box" style="margin-left: 30px;">
-				<a href="{$item.product_url}" class="kat1img"><img style="max-height: 170px;max-width:130px;" src="{$item.product_picture_small}"  alt="{$item.product_title|escape}"></a>
-				<div class="kat2link"{if $item.product_price_old} style="margin-bottom: 20px"{/if}><a href="{$item.product_url}">{$item.product_title|escape}</a></div>
-{if $item.product_price_old}
-				<div class="discountblock">
-					<s>{$item.product_price_old} р.</s>
-				</div>
-{/if}
-				<div class="pricebox">
-					<div class="priceblock">
-						{$item.product_price} р.
-					</div>
-					<div class="vkorzinu">
-					{if $item.cart_url}
-						<a href="{$item.cart_url}" title="В корзину">В корзину</a>
-						{else}
-						<a href="" title="В корзине">В корзине</a>
-						
-						{/if}
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-{/foreach}
-{/if}
 		</td>
 		<td class="right" style="vertical-align:top;">
 			<div class="marker">
@@ -72,6 +44,7 @@
 				<s>{$product_price_old} р.</s>
 {/if}
 				<span>{$product_price} р.</span>
+				
 				<a href="{$cart_url}">В корзину</a>
 {if $product_price_special}
 				<div class="action_marker">
@@ -99,6 +72,38 @@
 {/if}
 		</td>
 	</tr>
+{if $like_list}
+<tr>
+<td colspan="2">
+			<h4 style="margin: 20px 0px 20px 30px;">Похожие товары</h4>
+{foreach from=$like_list item=item}
+			<div class="kat2box" style="margin-left: 0px;margin-right:15px;">
+				<a href="{$item.product_url}" class="kat1img"><img style="max-height: 170px;max-width:130px;" src="{$item.product_picture_small}"  alt="{$item.product_title|escape}"></a>
+				<div class="kat2link"{if $item.product_price_old} style="margin-bottom: 20px"{/if}><a href="{$item.product_url}">{$item.product_title|escape}</a></div>
+{if $item.product_price_old}
+				<div class="discountblock">
+					<s>{$item.product_price_old} р.</s>
+				</div>
+{/if}
+				<div class="pricebox">
+					<div class="priceblock">
+						{$item.product_price} р.
+					</div>
+					<div class="vkorzinu">
+					{if $item.cart_url}
+						<a href="{$item.cart_url}" title="В корзину">В корзину</a>
+						{else}
+						<a href="" title="В корзине">В корзине</a>
+						
+						{/if}
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+{/foreach}
+</td>
+</tr>
+{/if}
 </table>
 {else}
 <p class="p">

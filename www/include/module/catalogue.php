@@ -60,7 +60,7 @@
 				where catalogue_active = 1';
 				$catalogue_count = db::select( $catalogue_query, array( 'catalogue_id' => $catalogue_id ) );
 			}
-			
+			$product_brand=0;
 			if (( $catalogue_count['_catalogue_count'] )&&($catalogue_id!=0)) // Список подкаталогов
 			{
 				$rows_per_page = max( intval( $this -> params['rows_per_page_catalogue'] ), 1 );
@@ -130,7 +130,12 @@
 						select * from catalogue where catalogue_id = :catalogue_id and catalogue_active = 1';
 					
 					$catalogue_item = db::select( $catalogue_query, array( 'catalogue_id' => $catalogue_id ) );
-					//$catalogue_item['catalogue_parent']='0';
+                    
+                    $catalogue_query = '
+						select * from catalogue where catalogue_id = :catalogue_id and catalogue_active = 1';
+					
+					$catalogue_parent = db::select( $catalogue_query, array( 'catalogue_id' => $catalogue_item['catalogue_parent'] ) );
+					//print_r($catalogue_parent);
 				}
 				else
 				{
@@ -169,7 +174,7 @@
 				
 				
 				$brand_query = '
-					select distinct brand.brand_id, brand.brand_url, brand.brand_title, brand.brand_country, brand.brand_description, brand.brand_picture
+					select distinct brand.brand_id, brand.brand_url, brand.brand_title, brand.brand_country, brand.brand_description, brand.brand_picture, brand.brand_translit
 					from product
 						left join brand on brand.brand_id = product.product_brand
 					where product.product_active = 1 and '.(($catalogue_id>0)?'product.product_catalogue = :catalogue_id':' product.product_brand='.(int)$product_brand).' 
@@ -188,7 +193,7 @@
 					$catalogue_path[] = array( 'title' => $catalogue_item_temp['catalogue_short_title'],
 						'url' => '/' . $catalogue_item_temp['catalogue_url'] . '/' );
 				}*/
-				$catalogue_path[] = array('title'=>$catalogue_item['catalogue_short_title_breadcrumb']);
+				$catalogue_path[] = array('title'=>$catalogue_item['catalogue_short_title_breadcrumb'],'url' => '/' . $catalogue_item['catalogue_url'] . '/');
 
 				if ( $product_price_from = init_string( 'product_price_from' ) )
 				{
@@ -257,6 +262,7 @@
 						$selected_brand=$brand_list[$brand_index]['brand_title'];
                         $selected_brand_country=$brand_list[$brand_index]['brand_country'];
                         $selected_brand_picture=$brand_list[$brand_index]['brand_picture'];
+                        $selected_brand_translit=$brand_list[$brand_index]['brand_translit'];
                         if($catalogue_id==0)
                         {
                         $this -> tpl -> assign( 'catalogue_description_top', $brand_list[$brand_index]['brand_description'] );
@@ -322,9 +328,16 @@
 				$this -> content = $this -> tpl -> fetch( 'module/catalogue/product_list.tpl' );
 			}
 			
-			if($catalogue_id!=0)
+			//print_r($product_brand);
+            if($catalogue_id!=0 && !$product_brand)
             {
                  $this -> meta = $this -> read_meta( 'catalogue', $catalogue_id ? $catalogue_id : '' );
+            }
+            if($catalogue_id!=0 && $product_brand)
+            {
+                 $this -> meta['title'] = $catalogue_item['catalogue_short_title_breadcrumb'].' '.$selected_brand.', купить '.mb_strtolower($catalogue_parent['catalogue_short_title']).' в интернет-магазине Sport-strong.ru';
+                 $this -> meta['description'] = 'Интернет магазин тренажеров Sport-strong предлагает выбрать и купить '.mb_strtolower($catalogue_item['catalogue_short_title_breadcrumb']).' '.$selected_brand.'. Низкие цены. Доставка. 8 (495) 778-66-59 ';
+                 $this -> meta['keywords'] = mb_strtolower($catalogue_item['catalogue_short_title_breadcrumb'].' '.$selected_brand.', купить '.$catalogue_item['catalogue_short_title_breadcrumb'].' '.$selected_brand_translit);
             }
 		}
 		

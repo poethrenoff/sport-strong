@@ -42,8 +42,9 @@
 					inner join catalogue on catalogue.catalogue_id = product.product_catalogue
 				where product_id = :product_id and product_active = 1';
 			$product_list = db::select_all( $product_query, array( 'product_id' => $product_id ) );
+            if(isset($product_list[0])){
             $product_price = $product_list[0]['product_price'];
-            $catalogue_id = $product_list[0]['catalogue_id'];
+            $catalogue_id = $product_list[0]['catalogue_id'];}
 			if ( count( $product_list ) == 0 )
 			{
 				$this -> tpl -> assign( 'manager_email', get_preference( 'manager_email' ) );
