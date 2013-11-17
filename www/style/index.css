@@ -173,8 +173,6 @@ div.clear {clear: both !important;visibility: hidden !important;margin:0 !import
 
 .ski { margin-bottom:10px;}
 a.skidki { display:block; width:220px; height:41px; background:url(../img/skidki.png) 0 0 no-repeat; text-indent:-9999px;}
-a.skidki:hover {background:url(../img/skidki.png) 0 -41px no-repeat;}
-
 
 .leftmenubox { background:#E8E8E8;}
 .lmtitle { color:#333; font-size:0.9em; font-weight:bold; display:block; padding:10px;}
@@ -578,4 +576,20 @@ a.close {
 	margin-top: 10px;
 	margin-right: 10px;
 	display: inline;
+}
+
+.action_marker {
+    float: right;
+}
+.action_marker .action_text {
+    position: absolute;
+    display: none;
+    float: left;
+    width: 300px;
+    padding: 5px;
+    margin-left: -280px;
+    color: #535353;
+    background: white;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }

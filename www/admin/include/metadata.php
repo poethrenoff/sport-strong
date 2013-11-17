@@ -114,6 +114,7 @@
 					'product_preview' => array( 'title' => 'Описание для экспорта', 'type' => 'text' ),
 					'product_price' => array( 'title' => 'Цена', 'type' => 'float', 'show' => 1, 'errors' => 'require' ),
 					'product_price_old' => array( 'title' => 'Цена (старая)', 'type' => 'float' ),
+					'product_price_special' => array( 'title' => 'Цена по акции', 'type' => 'float' ),
 					'product_picture_big' => array( 'title' => 'Большое изображение', 'type' => 'image', 'upload_dir' => '/image/product/original/' ),
 					'product_picture_middle' => array( 'title' => 'Среднее изображение', 'type' => 'image', 'upload_dir' => '/image/product/' ),
 					'product_picture_small' => array( 'title' => 'Маленькое изображение', 'type' => 'image', 'upload_dir' => '/image/product/preview/' ),

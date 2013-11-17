@@ -67,6 +67,16 @@ jQuery(document).ready(function(){
 		//	At the end, we add return false so that the click on the link is not executed
 		return false;
 	});
+	
+	$('.action_marker img').mouseover(function(){
+		$('.action_marker .action_text').show('slow');
+	}).mouseout(function(){
+		$('.action_marker .action_text').hide('slow');
+	});
+	
+	setInterval(function(){
+		$('.skidki').animate({opacity: 0.75}, 1000).animate({opacity: 1}, 1000);
+	}, 1000);
 });
 
 // Обратный звонок

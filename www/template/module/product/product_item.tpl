@@ -72,8 +72,15 @@
 				<s>{$product_price_old} р.</s>
 {/if}
 				<span>{$product_price} р.</span>
-				
 				<a href="{$cart_url}">В корзину</a>
+{if $product_price_special}
+				<div class="action_marker">
+					<img src="/img/special.png" />
+					<div class="action_text">
+						{$product_action_text}
+					</div>
+				</div>
+{/if}
 				<div class="clear"></div>
 			</div>
 			<div class="description">

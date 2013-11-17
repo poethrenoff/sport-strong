@@ -439,14 +439,12 @@
 					$product_list[$product_index]['product_picture_middle'] = '/image/product/default';
 				
 				if ( !isset( $_SESSION['cart'][$product_item['product_id']] ) )
-					$product_list[$product_index]['cart_url'] =
-						get_request_url( array( 'in_cart' => $product_item['product_id'] ), array( 'in_compare' ) );
+					$product_list[$product_index]['cart_url'] = '?in_cart=' . $product_item['product_id'];
+				if ( !isset( $_SESSION['compare'][$product_item['product_id']] ) )
+					$product_list[$product_index]['compare_url'] = '?in_compare=' . $product_item['product_id'];
 				if ( !isset( $_SESSION['cart'][$product_item['product_id']] ) )
 					$product_list[$product_index]['fast_url'] =
 						get_request_url( array( 'product_id' => $product_item['product_id'] ), array( 'in_cart', 'in_compare' ), '/fast_order.php' );
-				if ( !isset( $_SESSION['compare'][$product_item['product_id']] ) )
-					$product_list[$product_index]['compare_url'] =
-						get_request_url( array( 'in_compare' => $product_item['product_id'] ), array( 'in_cart' ) );
 				
 				$product_list[$product_index]['product_price'] = recount_price( $product_item['product_price'] );
 				

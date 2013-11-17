@@ -37,7 +37,7 @@
     <div class="stroka">
     	<div class="k1">
         	<img src="{$item.product_pic}" width="90" alt="" class="korzimg">
-            <a href="">{$item.product_title|escape}</a>
+            {$item.product_title|escape}
         </div>
         <div class="k2">{$item.product_price} р.</div>
         <div class="k3">

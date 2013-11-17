@@ -29,21 +29,19 @@
 			if ( $in_cart = init_string( 'in_cart' ) )
 			{
 				$product_item = db::select( '
-					select product_id, product_title, product_price, product_picture_small
+					select product_id, product_title, if(product_price_special, product_price_special, product_price) as product_price, product_picture_small
 					from product where product_id = :product_id and product_active = 1',
 						array( 'product_id' => $in_cart ) );
-				
+					
 				if ( $product_item )
 				{
 					$product_item['product_price'] = recount_price( $product_item['product_price'] );
 					
 					$_SESSION['cart'][$in_cart] = $product_item + array( 'product_count' => 1,
-						'product_cost' => $product_item['product_price'],'product_pic' => $product_item['product_picture_small'] );
+						'product_cost' => $product_item['product_price'], 'product_pic' => $product_item['product_picture_small'] );
 				}
-				//echo  get_request_url( array(), array( 'in_cart' ), '', '&' );
-				//header( 'Location: ' . get_request_url( array(), array( 'in_cart' ), '', '&' ) );
-				header( 'Location: /cart.php' );
-				exit;
+				
+				$this -> redirect();
 			}
 			// Добавление товара в корзину
 			if ( $recheck_cart = init_string( 'recheck_cart' ))
@@ -51,28 +49,25 @@
 				if ($count_item>0)
 				{
 					$product_item = db::select( '
-						select product_id, product_title, product_price, product_picture_small
+						select product_id, product_title, if(product_price_special, product_price_special, product_price) as product_price, product_picture_small
 						from product where product_id = :product_id and product_active = 1',
 							array( 'product_id' => $recheck_cart ) );
 					
 					if ( $product_item )
 					{
-						
 						$product_item['product_price'] = recount_price( $product_item['product_price']);
 						
 						$_SESSION['cart'][$recheck_cart] = $product_item + array( 'product_count' => $count_item,
-							'product_cost' => $product_item['product_price']*$count_item,'product_pic' => $product_item['product_picture_small'] );
+							'product_cost' => $product_item['product_price']*$count_item, 'product_pic' => $product_item['product_picture_small'] );
 					}
-					//echo  get_request_url( array(), array( 'recheck_cart' ), '', '&' );
-					//header( 'Location: ' . get_request_url( array(), array( 'recheck_cart' ), '', '&' ) );
-					header( 'Location: /cart.php' );
-					exit;
+                    
+                    $this -> redirect();
 				}
 				else
 				{
 					unset( $_SESSION['cart'][$recheck_cart] );
-					
-					$this -> redirect();				
+                    
+                    $this -> redirect();
 				}
 			}
 						
@@ -98,12 +93,11 @@
 		// Редактирование товаров в корзине
 		protected function get_form()
 		{
-			
 			list( $cart, $order_sum, $order_count ) = self::get_cart();
 			$this -> tpl -> assign( 'cart', $cart );
 			$this -> tpl -> assign( 'order_sum', $order_sum );
 			$this -> tpl -> assign( 'clear_url', get_url( array( 'action' => 'cart_save' ) ) );
-				
+			
 			$this -> content = $this -> tpl -> fetch( 'module/cart/cart_form.tpl' );
 			$this -> path = array_merge( $this -> path, array( array( 'title' => 'Корзина' ) ) );
 			
@@ -147,7 +141,7 @@
 			foreach ( $cart as $product_id => $product_count )
 			{
 				$product_item = db::select( '
-					select product_id, product_title, product_price
+					select product_id, product_title, if(product_price_special, product_price_special, product_price) as product_price
 					from product where product_id = :product_id and product_active = 1',
 						array( 'product_id' => $product_id ) );
 				$product_count = intval( $product_count );

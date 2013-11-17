@@ -122,7 +122,13 @@
 			catalogue::assign_properties( $like_list );
 			
 			$this -> tpl -> assign( $product_item );
-			
+            
+            if ($product_item['product_price_special']) {
+                $action_text = preg_replace('/{product_price_special}/',
+                    '<b style="color: red">'.$product_item['product_price_special'].'</b>', get_preference('action_text'));
+                $this -> tpl -> assign( 'product_action_text', $action_text );
+            }
+            
 			$this -> tpl -> assign( 'file_list', $file_list );
 			$this -> tpl -> assign( 'article_list', $article_list );
 			
