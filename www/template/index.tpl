@@ -74,9 +74,10 @@ jQuery(document).ready(function(){
 		$('.action_marker .action_text').hide('slow');
 	});
 	
-	setInterval(function(){
-		$('.skidki').animate({opacity: 0.75}, 1000).animate({opacity: 1}, 1000);
-	}, 1000);
+	function blickSkidki() {
+		$('.skidki').animate({opacity: 0.50}, 750).animate({opacity: 1}, 750);
+	}
+	setInterval(blickSkidki, 1500); blickSkidki();
 });
 
 // Обратный звонок

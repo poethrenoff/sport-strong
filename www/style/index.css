@@ -172,7 +172,7 @@ div.clear {clear: both !important;visibility: hidden !important;margin:0 !import
 #left { width:220px; float:left;}
 
 .ski { margin-bottom:10px;}
-a.skidki { display:block; width:220px; height:41px; background:url(../img/skidki.png) 0 0 no-repeat; text-indent:-9999px;}
+a.skidki { display:block; width:220px; height:41px; background:url(../img/skidki.png) 0 -41px no-repeat; text-indent:-9999px;}
 
 .leftmenubox { background:#E8E8E8;}
 .lmtitle { color:#333; font-size:0.9em; font-weight:bold; display:block; padding:10px;}
